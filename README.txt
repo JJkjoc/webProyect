@@ -1,7 +1,7 @@
 ---WEB PROYECT---
 Participantes:
 1. 
-2. 
+2. Belen Laura
 3. 
 4. Joel
 5. testeo
