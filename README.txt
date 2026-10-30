@@ -1,3 +1,6 @@
 ---WEB PROYECT---
-Participantes
-Joel
+Participantes:
+1. 
+2. 
+3. 
+4. Joel
