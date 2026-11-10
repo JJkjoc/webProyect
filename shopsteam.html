@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steam</title>
+<!-- Enlace CDN para Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+  :root {
+    --fondo: #1b2838;
+    --barra: #171a21;
+    --panel: #16202d;
+    --panel2: #2a475e;
+    --azul: #66c0f4;
+    --texto: #c7d5e0;
+    --tenue: #8f98a0;
+    --verde: #5ba32b;
+    --verde-osc: #3f7a1c;
+
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+  }
+  button { font: inherit; cursor: pointer; border: 0; }
+
+  /* ---------- Barra superior ---------- */
+  header {
+    background: var(--barra);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 20px;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .logo { font-size: 20px; font-weight: bold; color: #fff; letter-spacing: 1px; }
+  nav { display: flex; gap: 4px; }
+  .nav-btn {
+    background: none;
+    color: var(--tenue);
+    padding: 18px 14px;
+    font-size: 14px;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-btn:hover { color: #fff; }
+  .nav-btn.activo { color: #fff; border-bottom-color: var(--azul); }
+  .usuario { margin-left: auto; font-size: 14px; color: var(--azul); }
+
+  /* ---------- Secciones ---------- */
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+  .seccion { display: none; }
+  .seccion.activa { display: block; }
+  h2 { color: #fff; font-size: 20px; font-weight: normal; margin-bottom: 16px; }
+
+  /* ---------- Tienda ---------- */
+  .destacado {
+    padding: 32px;
+    margin-bottom: 24px;
+    background-image: url(https://wallpapercave.com/wp/wp14567184.jpg);
+    background-size: cover;
+    min-height: 400px;
+  }
+  .destacado h3 { color: #fff; font-size: 26px; margin-bottom: 8px; }
+  .btn-azul {
+    background: linear-gradient(90deg, #06bfff, #2d73ff);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 2px;
+  }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+  .tarjeta { background: var(--panel); }
+  .tarjeta .img {
+    height: 90px;
+    background: var(--panel2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #fff;
+  }
+  .tarjeta .info { padding: 10px; display: flex; justify-content: space-between; font-size: 14px; }
+  .precio { background: #000; color: #beee11; padding: 2px 6px; font-size: 13px; }
+
+  /* ---------- Biblioteca ---------- */
+  .biblioteca { display: grid; grid-template-columns: 260px 1fr; gap: 16px; }
+  .lateral { background: var(--panel); padding: 12px; }
+  .lateral input {
+    width: 100%;
+    background: var(--barra);
+    border: 1px solid var(--panel2);
+    color: var(--texto);
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  #lista-juegos { list-style: none; }
+  .juego { padding: 8px 10px; cursor: pointer; font-size: 14px; }
+  .juego:hover { background: var(--panel2); color: #fff; }
+  .juego.seleccionado { background: var(--panel2); color: #fff; }
+
+  .detalle { background: var(--panel); }
+  .portada {
+    height: 220px;
+    background: linear-gradient(135deg, var(--panel2), var(--barra)) center / cover;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+  }
+  .portada h3 { font-size: 30px; color: #fff; text-shadow: 0 2px 6px #000; }
+  .barra-jugar { display: flex; align-items: center; gap: 24px; padding: 16px 20px; background: #0e141b; }
+  .btn-jugar { background: var(--verde); color: #fff; padding: 12px 36px; font-size: 16px; border-radius: 2px; }
+  .btn-jugar:hover { background: var(--verde-osc); }
+  .dato { font-size: 12px; color: var(--tenue); }
+  .dato b { display: block; color: #fff; font-size: 14px; font-weight: normal; }
+  #juego-desc { padding: 20px; line-height: 1.5; }
+
+  /* ---------- Comunidad y perfil ---------- */
+  .publicacion { background: var(--panel); padding: 14px; margin-bottom: 10px; }
+  .publicacion b { color: var(--azul); }
+  .perfil { display: flex; gap: 20px; align-items: center; background: var(--panel); padding: 24px; }
+  .avatar {
+    width: 96px; height: 96px;
+    background: var(--panel2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; color: #fff;
+  }
+  .perfil h3 { color: #fff; margin-bottom: 8px; }
+
+  @media (max-width: 700px) {
+    .biblioteca { grid-template-columns: 1fr; }
+    .usuario { display: none; }
+    .nav-btn { padding: 18px 8px; font-size: 13px; }
+  }
+  /*Enlaces*/
+  a {
+    text-decoration: none;
+    color: white;
+  }
+/*Imagenes*/
+.imgd  {
+   background-size: cover;
+  min-height: 100px;
+}
+.img1 {
+  background-image: url(https://wallpapercave.com/wp/wp14567184.jpg);
+}
+.img2 {
+  background-image: url(https://wallpapercave.com/wp/wp11647626.jpg) ;
+}
+.img3 {
+  background-image: url(https://wallpapercave.com/wp/wp3973740.jpg);
+}
+.img4 {
+  background-image: url(https://wallpapercave.com/wp/wp3589145.jpg);
+}
+.img5 {
+  background-image: url(https://wallpapercave.com/uwp/uwp5090488.png);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><i class="bi bi-steam"></i> STEAM</div>
+  <nav>
+    <button class="nav-btn activo" data-seccion="tienda">Tienda</button>
+    <button class="nav-btn" data-seccion="biblioteca">Biblioteca</button>
+    <button class="nav-btn" data-seccion="comunidad">Comunidad</button>
+    <button class="nav-btn" data-seccion="perfil">Perfil</button>
+  </nav>
+  <span class="usuario">TuUsuario</span>
+</header>
+
+<main>
+
+  <!-- TIENDA -->
+  <section id="tienda" class="seccion activa">
+    <div class="destacado">
+      <h3>Oferta destacada</h3>
+      <button class="btn-azul" ><a href="#ds">Ver en la tienda</a></button>
+    </div>
+    <h2>Novedades y populares</h2>
+    <div class="rejilla">
+      <div class="tarjeta"><div class=" imgd img1"></div><div class="info"><span id="ds">Death Stranding 2</span><span class="precio">-50%</span></div></div>
+      <div class="tarjeta"><div class=" imgd img2"></div><div class="info"><span>Signalis</span><span class="precio">$ 9.99</span></div></div>
+      <div class="tarjeta"><div class=" imgd img3"></div><div class="info"><span>Metro Exodus</span><span class="precio">-25%</span></div></div>
+      <div class="tarjeta"><div class=" imgd img4" ></div><div class="info"><span>Dead Cells</span><span class="precio">Gratis</span></div></div>
+      <div class="tarjeta"><div class=" imgd img5" ></div><div class="info"><span>Halo CE</span><span class="precio">Gratis</span></div></div>
+    </div>
+  </section>
+
+  <!-- BIBLIOTECA -->
+  <section id="biblioteca" class="seccion">
+    <div class="biblioteca">
+
+      <aside class="lateral">
+        <input type="search" id="buscador" placeholder="Buscar juego...">
+
+        <!--
+          PARA AÑADIR UN JUEGO: copia una línea <li class="juego"> y cambia sus datos.
+          data-horas  = horas jugadas
+          data-ultima = última vez que jugaste
+          data-img    = ruta de la portada (déjalo vacío si no tienes)
+          data-desc   = descripción corta
+        -->
+        <ul id="lista-juegos">
+          <li class="juego" data-horas="120" data-ultima="Hoy" data-img="" data-desc="Descripción de ejemplo del primer juego de tu biblioteca.">Half-Life 2</li>
+        </ul>
+      </aside>
+
+      <article class="detalle">
+        <div class="portada" id="juego-portada"><h3 id="juego-titulo"></h3></div>
+        <div class="barra-jugar">
+          <button class="btn-jugar">▶ JUGAR</button>
+          <div class="dato">ÚLTIMA SESIÓN<b id="juego-ultima"></b></div>
+          <div class="dato">TIEMPO DE JUEGO<b id="juego-horas"></b></div>
+        </div>
+        <p id="juego-desc"></p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section id="comunidad" class="seccion">
+    <h2>Actividad de la comunidad</h2>
+    <div class="publicacion"><b>str </b>Juega Half-Life 2.</div>
+  </section>
+
+  <!-- PERFIL -->
+  <section id="perfil" class="seccion">
+    <h2>Perfil</h2>
+    <div class="perfil">
+      <div class="avatar">T</div>
+      <div>
+        <h3>TuUsuario</h3>
+        <p>Nivel 10</p>
+        <p>Juegos en biblioteca: <b id="total-juegos"></b></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // ----- paginacon en una pestaña lol -----
+  const botonesNav = document.querySelectorAll('.nav-btn');
+  const secciones = document.querySelectorAll('.seccion');
+
+  botonesNav.forEach(function (boton) {
+    boton.addEventListener('click', function () {
+      botonesNav.forEach(function (b) { b.classList.remove('activo'); });
+      secciones.forEach(function (s) { s.classList.remove('activa'); });
+      boton.classList.add('activo');
+      document.getElementById(boton.dataset.seccion).classList.add('activa');
+    });
+  });
+
+  // ----- Biblioteca: todo lo que tenga la clase .juego se muestra aquí -----
+  const juegos = document.querySelectorAll('.juego');
+
+  function mostrarJuego(juego) {
+    juegos.forEach(function (j) { j.classList.remove('seleccionado'); });
+    juego.classList.add('seleccionado');
+
+    document.getElementById('juego-titulo').textContent = juego.textContent;
+    document.getElementById('juego-horas').textContent = juego.dataset.horas + ' h';
+    document.getElementById('juego-ultima').textContent = juego.dataset.ultima;
+    document.getElementById('juego-desc').textContent = juego.dataset.desc;
+
+    const portada = document.getElementById('juego-portada');
+    portada.style.backgroundImage = juego.dataset.img ? 'url(' + juego.dataset.img + ')' : '';
+  }
+
+  juegos.forEach(function (juego) {
+    juego.addEventListener('click', function () { mostrarJuego(juego); });
+  });
+
+  // Buscador (por estudiar)
+  document.getElementById('buscador').addEventListener('input', function (e) {
+    const texto = e.target.value.toLowerCase();
+    juegos.forEach(function (j) {
+      j.style.display = j.textContent.toLowerCase().includes(texto) ? '' : 'none';
+    });
+  });
+
+  // Estado inicial
+  if (juegos.length > 0) mostrarJuego(juegos[0]);
+  document.getElementById('total-juegos').textContent = juegos.length;
+</script>
+
+</body>
+</html>
