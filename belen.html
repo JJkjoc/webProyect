@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Propuesta web: pizzas, sándwiches, pastelería y postres — Belen Laura</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root{--red:#d93a2b;--gold:#f2c94c;--bg:#0a0d14;--card:#171c2a;--line:#2c3550}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(circle at 70% 0,#1b2236 0,var(--bg) 55%);color:#eef0f5;font-family:"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}
+h1,h2,h3,.brand{font-family:Georgia,"Times New Roman",serif}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:14px 0}
+.brand{color:var(--red);font-weight:700;letter-spacing:.08em;font-size:1.35rem}
+.tag{background:#f2a33a;color:#2a1600;border-radius:8px;padding:2px 8px;font-size:.7rem;font-weight:700;margin-left:6px;font-family:"Segoe UI",sans-serif}
+.top a{color:#eef0f5;text-decoration:none;margin-left:14px;font-size:.95rem}.top a:hover{color:var(--gold)}
+.pill{background:#1a2030;border:1px solid #3a4560;border-radius:999px;padding:4px 12px;color:var(--gold);font-size:.9rem}
+.hero h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.08;font-weight:800;text-transform:uppercase}
+.hero h1 span{color:#e04a2f}
+.box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-left:4px solid var(--red);border-radius:14px;padding:16px;margin-bottom:12px}
+.box h3{font-size:1rem;color:var(--gold);font-family:"Segoe UI",sans-serif;font-weight:700;margin-bottom:6px}
+.box p,.box li{font-size:.95rem;line-height:1.5}
+.frame{border:2px solid #b8903f;border-radius:18px;overflow:hidden;position:relative;background:radial-gradient(circle,#2b3042,#0a0d14);aspect-ratio:4/5;max-width:380px;margin:auto;box-shadow:0 18px 36px rgba(0,0,0,.55)}
+.frame>svg,.frame>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cap2{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(10,13,20,.88);border:1px solid var(--gold);border-radius:10px;padding:8px 12px;z-index:2;font-size:.9rem}
+.eyebrow{color:var(--red);text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;text-align:center;margin:0}
+.sec{padding:46px 0 12px}.sec h2{text-align:center;font-size:clamp(1.6rem,4.5vw,2.4rem);font-variant:small-caps;margin-bottom:20px}
+.cattabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px}
+.cattab{background:#141a28;border:1px solid var(--line);border-radius:14px;color:#eef0f5;padding:12px 8px;text-align:center;cursor:pointer;transition:.2s}
+.cattab:hover{border-color:var(--gold)}
+.cattab small{display:block;opacity:.75;font-size:.78rem}
+.cattab.on{background:linear-gradient(#e8452d,#c22b1b);border-color:#ff8a70;box-shadow:0 0 18px rgba(232,69,45,.45)}
+.pn{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:16px;padding:18px;height:100%;display:flex;flex-direction:column}
+.pn h3{font-size:1.25rem}
+.bookp{background:#fff;border-radius:18px;padding:14px;color:#3a2530;text-align:center;height:100%;box-shadow:0 16px 32px rgba(0,0,0,.45)}
+.bookp .in{border:1px solid #d9c9b5;border-radius:10px;padding:12px;height:100%;display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(circle at 50% 35%,#fffdf9,#f6efe2)}
+.bookp small{letter-spacing:.2em;color:#8a7a90;font-weight:600}
+.bookp h3{font-size:1.2rem;color:#4a2a44;margin:4px 0}
+.bookp svg{width:100%;max-width:300px;display:block;margin:4px auto}
+.bookp .cp{font-family:Georgia,serif;font-style:italic;border-top:1px solid #d9c9b5;padding-top:8px;font-size:.95rem}
+.og{margin-bottom:14px}.og b{display:block;color:var(--gold);margin-bottom:6px;font-size:.92rem}
+.opt{background:#2a3146;border:1px solid #475270;color:#eef0f5;border-radius:10px;padding:6px 12px;margin:0 6px 6px 0;cursor:pointer;font-size:.88rem;transition:.15s}
+.opt:hover{border-color:var(--gold)}
+.opt.on{background:#f2e24a;color:#2a2400;border-color:#f2e24a;font-weight:700}
+.tot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #3a4560;padding-top:12px;margin-top:auto}
+.price{font-family:Georgia,serif;font-size:2rem;color:var(--gold);line-height:1}
+.exp{border-left:4px solid #f2a33a}
+.chipy{display:inline-block;background:var(--gold);color:#2a2400;border-radius:8px;padding:2px 10px;font-size:.8rem;font-weight:700;margin-bottom:8px;align-self:flex-start}
+.filt{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.filt button{background:transparent;border:1px solid #fff;color:#fff;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:.9rem;transition:.15s}
+.filt button:hover{border-color:var(--gold);color:var(--gold)}
+.filt button.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:.2s}
+.mcard:hover{border-color:var(--gold);transform:translateY(-3px)}
+.media{position:relative;aspect-ratio:4/3;background:radial-gradient(circle at 50% 40%,#3a3f52,#14171f);overflow:hidden}
+.media svg,.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media svg{object-fit:contain}
+.br{position:absolute;left:10px;top:10px;z-index:2;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;border-radius:6px;padding:3px 8px;text-transform:uppercase}
+.mb{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.mb p{font-size:.85rem;opacity:.78;margin:0;flex:1}
+.mb .pr{display:flex;justify-content:space-between;align-items:center}
+.mb .pr b{color:var(--gold);font-size:1.25rem}
+.mbtn{background:linear-gradient(#e8452d,#c22b1b);border:0;color:#fff;border-radius:10px;padding:9px;font-weight:600;cursor:pointer;transition:.15s}
+.mbtn:hover{filter:brightness(1.1)}
+.foot{border-top:1px solid var(--line);margin-top:44px;padding:22px 0;text-align:center;opacity:.75;font-size:.9rem}
+body.edit [data-edit]{outline:2px dashed var(--gold);outline-offset:3px;cursor:text}
+.ly,.steam,.liq,.bub{will-change:transform}
+.steam{opacity:0}
+.anim .ly{animation:drop .7s cubic-bezier(.25,.9,.3,1.25) both;animation-delay:calc(var(--i)*.12s)}
+.anim .rise{animation:rise .9s ease both;transform-origin:150px 270px}
+.anim .liq{transform-origin:150px 250px;animation:fillup 1.6s ease both}
+.anim .steam{animation:steam 3s ease-in infinite;animation-delay:var(--d)}
+.anim .bub{animation:bub 2.4s linear infinite;animation-delay:var(--d)}
+.bookp.flip{animation:flip .8s cubic-bezier(.2,.8,.2,1) both;transform-origin:left center}
+@keyframes drop{from{transform:translateY(-140px) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes rise{from{transform:translateY(60px) scale(.6);opacity:0}}
+@keyframes fillup{from{transform:scaleY(0)}}
+@keyframes steam{0%{opacity:0;transform:translateY(8px)}40%{opacity:.55}100%{opacity:0;transform:translateY(-26px)}}
+@keyframes bub{from{transform:translateY(0);opacity:.8}to{transform:translateY(-120px);opacity:0}}
+@keyframes flip{from{transform:perspective(1100px) rotateY(-70deg);opacity:.2}to{transform:none}}
+@media (prefers-reduced-motion:reduce){.anim *,.flip{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="container">
+ <div class="top">
+  <div><span class="brand" data-edit>DELIZIA</span><span class="tag">PROPUESTA WEB · BELEN LAURA</span></div>
+  <div>
+   <a href="#constructor">Constructor interactivo</a>
+   <a href="#catalogo">Menú de sugerencias</a>
+   <span class="pill ms-2" id="cart">🛒 0 · $0.00</span>
+   <button type="button" class="opt ms-2" id="editBtn">✏️ Modo editar</button>
+  </div>
+ </div>
+
+ <section class="hero row g-4 align-items-center py-4">
+  <div class="col-lg-7">
+   <h1 data-edit>Sabor artesanal. <span>Armado a tu gusto.</span></h1>
+   <div class="box" data-edit>
+    <h3>Mi sugerencia para el proyecto del equipo:</h3>
+    <p>Estuve pensando en algunas ideas para el proyecto y podríamos hacer una página de una <b>pastelería</b>, un <b>restaurante virtual</b> y un <b>creador de pizzas y sándwiches personalizados</b>, donde se pueda elegir el tamaño (o la cantidad de cortes), los ingredientes y las salsas, y que el precio se calcule automáticamente.</p>
+    <p class="mb-0 opacity-75">Tecnologías: HTML5, CSS3, Bootstrap y JavaScript para el diseño y las funciones interactivas.</p>
+   </div>
+   <div class="box" data-edit style="border-left-color:var(--gold)">
+    <h3>A dónde quiero llegar</h3>
+    <ul class="mb-0">
+     <li>Que el cliente arme su pedido y vea cómo queda antes de pedirlo.</li>
+     <li>Que el precio se calcule solo en cada cambio (cortes, ingredientes o salsas).</li>
+     <li>Que el equipo pueda juntar las tres ideas en una sola página.</li>
+    </ul>
+   </div>
+   <a class="btn btn-danger me-2 fw-semibold" href="#constructor">Probar constructor</a>
+   <a class="btn btn-outline-light fw-semibold" href="#catalogo">Ver menú realista</a>
+  </div>
+  <div class="col-lg-5">
+   <div class="frame anim" id="heroFrame">
+    <svg viewBox="0 0 300 300" id="heroArt" aria-hidden="true"></svg>
+    <img src="img/hero.jpg" alt="" onerror="this.remove()">
+    <div class="cap2"><b style="color:var(--gold)">Cálculo automático</b><br>Cortes flexibles (3, 4, 6, 8) + extras animados</div>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" id="constructor">
+  <p class="eyebrow">Demostración en vivo</p>
+  <h2>Libro de menú &amp; constructor visual</h2>
+  <div class="cattabs" id="cattabs"></div>
+  <div class="row g-4">
+   <div class="col-lg-5">
+    <div class="bookp" id="bookp">
+     <div class="in">
+      <small>LA CARTA INTERACTIVA</small>
+      <h3 id="bookT"></h3>
+      <svg id="bookArt" viewBox="0 0 300 300" role="img" aria-label="Tu plato"></svg>
+      <div class="cp" id="cap"></div>
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-4">
+    <div class="pn">
+     <h3>Personaliza tu pedido</h3>
+     <p class="small opacity-75">Haz clic para agregar o quitar elementos.</p>
+     <div id="opts"></div>
+     <div class="small opacity-75 mb-2" id="sum" aria-live="polite"></div>
+     <div class="tot">
+      <span class="price" id="total"></span>
+      <button type="button" class="btn btn-warning fw-semibold" id="addBtn">Agregar al pedido</button>
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-3">
+    <div class="pn exp">
+     <span class="chipy">Explicación del módulo</span>
+     <h3 id="exT"></h3>
+     <p id="exP" class="small"></p>
+     <p id="dishP" class="small opacity-75 mb-0"></p>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="sec" id="catalogo">
+  <p class="eyebrow" style="text-align:left">Catálogo visual de sugerencias</p>
+  <h2 style="text-align:left">¿Qué pizzas, sándwiches, pasteles y postres hay?</h2>
+  <p class="opacity-75">Elige una categoría para filtrar o haz clic en <b>“Personalizar este plato”</b> para cargarlo arriba y quitar o agregar ingredientes.</p>
+  <div class="filt" id="filt"></div>
+  <div class="row g-3" id="grid"></div>
+ </section>
+
+ <div class="foot" data-edit>Propuesta de desarrollo web • Diseñada por <b>Belen Laura</b> para el equipo</div>
+</div>
+
+<script>
+(function(){
+ var slots=[];[[36,5,0],[70,10,.31],[102,15,.1]].forEach(function(r){for(var j=0;j<r[1];j++){var a=r[2]+j*6.2832/r[1];slots.push({x:150+Math.cos(a)*r[0],y:150+Math.sin(a)*r[0],a:a})}});
+ function piece(n,x,y,a){
+  var d=(a*180/Math.PI+90).toFixed(0),rot=' transform="rotate('+d+' '+x+' '+y+')"';
+  if(n==="Pepperoni")return '<circle cx="'+x+'" cy="'+y+'" r="12" fill="#a8221b"/><circle cx="'+x+'" cy="'+y+'" r="9.5" fill="#c43a2f"/><circle cx="'+(x-3)+'" cy="'+(y-3)+'" r="1.6" fill="#7e1510"/><circle cx="'+(x+3)+'" cy="'+(y+2)+'" r="1.6" fill="#7e1510"/>';
+  if(n==="Champiñones")return '<g'+rot+'><path d="M'+(x-11)+' '+(y+2)+' Q'+(x-11)+' '+(y-10)+' '+x+' '+(y-10)+' Q'+(x+11)+' '+(y-10)+' '+(x+11)+' '+(y+2)+' Z" fill="#eadfc8"/><rect x="'+(x-3)+'" y="'+(y+2)+'" width="6" height="8" rx="2" fill="#d6c8aa"/></g>';
+  if(n==="Aceitunas")return '<circle cx="'+x+'" cy="'+y+'" r="7" fill="#1f1f1f"/><circle cx="'+x+'" cy="'+y+'" r="3" fill="#f4cf68"/>';
+  if(n==="Jamón")return '<rect x="'+(x-10)+'" y="'+(y-7)+'" width="20" height="14" rx="4" fill="#f2a6a6"'+rot+'/><rect x="'+(x-6)+'" y="'+(y-3)+'" width="12" height="3" rx="1.5" fill="#f9c9c9"'+rot+'/>';
+  return '<ellipse cx="'+x+'" cy="'+y+'" rx="11" ry="8" fill="#fff4c4" opacity=".92"'+rot+'/>';
+ }
+ function pizzaSvg(sauce,list,pid,cuts){
+  cuts=cuts||8;
+  var s='<defs><radialGradient id="'+pid+'c" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#f1c86a"/><stop offset="1" stop-color="#c98a3e"/></radialGradient></defs>';
+  s+='<circle cx="150" cy="156" r="146" fill="#000" opacity=".2"/><circle cx="150" cy="150" r="146" fill="url(#'+pid+'c)" stroke="#a96d2c" stroke-width="3"/>';
+  for(var k=0;k<30;k++){var q=k*6.2832/30;s+='<circle cx="'+(150+Math.cos(q)*138)+'" cy="'+(150+Math.sin(q)*138)+'" r="6" fill="#f0c273" opacity=".6"/>'}
+  s+='<circle cx="150" cy="150" r="127" fill="'+sauce+'"/><circle cx="150" cy="150" r="120" fill="#f4cf68"/>';
+  for(var k=0;k<24;k++){var q=k*2.4,rr=14+(k*37)%100;s+='<circle cx="'+(150+Math.cos(q)*rr)+'" cy="'+(150+Math.sin(q)*rr)+'" r="'+(9+(k*7)%9)+'" fill="'+(k%2?"#fbe49a":"#e3b44e")+'" opacity=".5"/>'}
+  for(var k=0;k<cuts;k++){var q=k*Math.PI*2/cuts+.39;s+='<line x1="150" y1="150" x2="'+(150+Math.cos(q)*140)+'" y2="'+(150+Math.sin(q)*140)+'" stroke="#a9742a" stroke-width="1.5" opacity=".35"/>'}
+  var m=list.length,step=m===1?2:m;
+  list.forEach(function(n,idx){slots.forEach(function(p,i){if(i%step===idx%step)s+='<g class="ly" style="--i:'+((i%10)*.5)+'">'+piece(n,p.x,p.y,p.a)+'</g>'})});
+  return s;
+ }
+
+ function cakeSvg(tiers,spv,flv,frv,decos){
+  var s='<ellipse cx="150" cy="272" rx="135" ry="14" fill="#cfd8cb"/>';
+  for(var i=0;i<tiers;i++){var w=200-i*55,h=56,y=262-(i+1)*h,x=150-w/2;
+   s+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="6" fill="'+spv+'"/>';
+   s+='<rect x="'+x+'" y="'+(y+h/2-4)+'" width="'+w+'" height="8" fill="'+flv+'"/>';
+   s+='<rect x="'+(x-3)+'" y="'+(y-5)+'" width="'+(w+6)+'" height="16" rx="8" fill="'+frv+'"/>';for(var d=0;d<5;d++)s+='<rect x="'+(x+8+d*(w-30)/4)+'" y="'+(y+6)+'" width="10" height="'+(12+(d*7)%9)+'" rx="5" fill="'+frv+'"/>';s+='<rect x="'+x+'" y="'+y+'" width="14" height="'+h+'" rx="6" fill="#fff" opacity=".14"/>';}
+  var topW=200-(tiers-1)*55,topY=262-tiers*56-5;
+  if(decos.indexOf("Chispas")>-1){var cols=["#e63946","#2a9d8f","#f4d35e","#3a86ff","#ff70a6"];for(var j=0;j<14;j++)s+='<rect x="'+(150-topW/2+8+j*(topW-16)/13)+'" y="'+(topY+3+(j%2)*5)+'" width="6" height="3" rx="1.5" fill="'+cols[j%5]+'"/>';}
+  if(decos.indexOf("Fresas")>-1)[-.4,0,.4].forEach(function(o){var cx=150+o*topW;s+='<path d="M'+(cx-9)+' '+(topY-12)+' Q'+cx+' '+(topY+8)+' '+(cx+9)+' '+(topY-12)+' Z" fill="#d62839"/><rect x="'+(cx-4)+'" y="'+(topY-15)+'" width="8" height="4" fill="#2f6b3a"/>'});
+  if(decos.indexOf("Cerezas")>-1)[-.18,.18].forEach(function(o){var cx=150+o*topW;s+='<path d="M'+cx+' '+(topY-8)+' q4 -14 12 -16" stroke="#2f6b3a" stroke-width="2" fill="none"/><circle cx="'+cx+'" cy="'+(topY-4)+'" r="8" fill="#8b0a1a"/>'});
+  if(decos.indexOf("Velas")>-1)[-.3,0,.3].forEach(function(o){var cx=150+o*topW;s+='<rect x="'+(cx-3)+'" y="'+(topY-26)+'" width="6" height="24" fill="#5bc0eb"/><ellipse cx="'+cx+'" cy="'+(topY-32)+'" rx="4" ry="6" fill="#ffb703"/>'});
+  return s;
+ }
+
+ var LY={
+  pan:[26,function(b){return '<path d="M42 '+(b-26)+'H258Q262 '+b+' 220 '+b+'H80Q38 '+b+' 42 '+(b-26)+'Z" fill="#d99a4b"/><rect x="52" y="'+(b-21)+'" width="196" height="5" rx="2.5" fill="#f1c27a" opacity=".6"/>'}],
+  tapa:[62,function(b){return '<path d="M38 '+b+'Q38 '+(b-66)+' 150 '+(b-66)+'Q262 '+(b-66)+' 262 '+b+'Z" fill="#dc9a45"/><ellipse cx="110" cy="'+(b-44)+'" rx="46" ry="12" fill="#f4c887" opacity=".55"/>'+[[100,48],[140,56],[180,50],[212,34],[78,30],[125,28],[165,32]].map(function(e){return '<ellipse cx="'+e[0]+'" cy="'+(b-e[1])+'" rx="4" ry="2" fill="#fff3d0"/>'}).join("")}],
+  carne:[24,function(b){return '<rect x="46" y="'+(b-24)+'" width="208" height="24" rx="12" fill="#5a3320"/>'+[70,100,130,160,190,220].map(function(x,k){return '<ellipse cx="'+x+'" cy="'+(b-8-(k%2)*8)+'" rx="7" ry="3" fill="#3a2013"/>'}).join("")+'<rect x="60" y="'+(b-21)+'" width="90" height="3" rx="1.5" fill="#8a5a3c" opacity=".7"/>'}],
+  queso:[12,function(b){return '<path d="M44 '+(b-10)+'H256V'+b+'H228L216 '+(b+10)+'L204 '+b+'H44Z" fill="#f6c63c"/><rect x="60" y="'+(b-8)+'" width="80" height="2" fill="#fff0a8" opacity=".8"/>'}],
+  tomate:[12,function(b){return '<rect x="52" y="'+(b-12)+'" width="196" height="12" rx="6" fill="#d93a2b"/><rect x="72" y="'+(b-9)+'" width="60" height="3" rx="1.5" fill="#f08a7a" opacity=".7"/>'}],
+  lechuga:[18,function(b){return '<path d="M44 '+(b-6)+'Q60 '+(b-26)+' 76 '+(b-8)+'T108 '+(b-8)+'T140 '+(b-8)+'T172 '+(b-8)+'T204 '+(b-8)+'T236 '+(b-8)+'L256 '+(b-4)+'L250 '+b+'Q150 '+(b+4)+' 50 '+b+'Z" fill="#6bbf4a" stroke="#8fd46a" stroke-width="2"/>'}],
+  cebolla:[6,function(b){return '<rect x="64" y="'+(b-6)+'" width="172" height="6" rx="3" fill="#ead7f2" stroke="#b99ac9"/>'}],
+  jamon:[10,function(b){return '<path d="M46 '+(b-8)+'Q96 '+(b-18)+' 150 '+(b-8)+'T254 '+(b-8)+'V'+b+'H46Z" fill="#f2a0a0"/>'}],
+  pollo:[26,function(b){return '<rect x="48" y="'+(b-26)+'" width="204" height="26" rx="13" fill="#d99a3a"/>'+[72,104,138,172,204,230].map(function(x,k){return '<circle cx="'+x+'" cy="'+(b-8-(k%2)*8)+'" r="5" fill="#b87a28"/>'}).join("")}],
+  pan2:[22,function(b){return '<rect x="50" y="'+(b-22)+'" width="200" height="22" rx="9" fill="#ead09a" stroke="#c99a55" stroke-width="4"/>'}]
+ };
+ function steam(xs,y){return xs.map(function(x,k){return '<path class="steam" style="--d:'+(k*.7)+'s" d="M'+x+' '+y+'q-12 -18 0 -34t0 -34" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>'}).join("")}
+ function stackSvg(L){var y=252,s='<ellipse cx="150" cy="264" rx="125" ry="14" fill="#000" opacity=".25"/><ellipse cx="150" cy="258" rx="120" ry="12" fill="#f3f1ec"/>';
+  L.forEach(function(n,i){var d=LY[n],b=y;y-=d[0];s+='<g class="ly" style="--i:'+i+'">'+d[1](b)+'</g>'});return s+steam([110,150,190],y-4)}
+ var SP={hoja:function(x,y){return '<ellipse cx="'+x+'" cy="'+y+'" rx="24" ry="10" fill="#5fb14a" transform="rotate('+((x*7)%60-30)+' '+x+' '+y+')"/>'},
+  tomate:function(x,y){return '<circle cx="'+x+'" cy="'+y+'" r="10" fill="#d93a2b"/><circle cx="'+(x-3)+'" cy="'+(y-3)+'" r="3" fill="#f08a7a"/>'},
+  pepino:function(x,y){return '<circle cx="'+x+'" cy="'+y+'" r="10" fill="#bfe3a0" stroke="#6fae4a" stroke-width="2"/><circle cx="'+x+'" cy="'+y+'" r="5" fill="#e4f4d2"/>'},
+  aceituna:function(x,y){return '<circle cx="'+x+'" cy="'+y+'" r="7" fill="#2a2a2a"/><circle cx="'+x+'" cy="'+y+'" r="2.5" fill="#d9d2b8"/>'},
+  queso:function(x,y){return '<rect x="'+(x-8)+'" y="'+(y-7)+'" width="16" height="14" rx="3" fill="#fff7e0" stroke="#e8dcb0"/>'},
+  crutones:function(x,y){return '<rect x="'+(x-7)+'" y="'+(y-7)+'" width="14" height="14" rx="3" fill="#d9a45a" transform="rotate(20 '+x+' '+y+')"/>'},
+  zanahoria:function(x,y){return '<circle cx="'+x+'" cy="'+y+'" r="7" fill="#f08a24"/><circle cx="'+x+'" cy="'+y+'" r="2.5" fill="#f9c27a"/>'},
+  maiz:function(x,y){return '<circle cx="'+x+'" cy="'+y+'" r="5" fill="#f4d03f"/>'}};
+ function saladSvg(types){var s='<ellipse cx="150" cy="268" rx="118" ry="12" fill="#000" opacity=".25"/><ellipse cx="150" cy="150" rx="112" ry="26" fill="#d9d6cf"/>';
+  for(var k=0;k<32;k++){var x=64+(k*53)%172,dx=(x-150)/88,y=158-(1-dx*dx)*38-(k%4)*7,t=k<16?"hoja":types[k%types.length];s+='<g class="ly" style="--i:'+(k*.12)+'">'+SP[t](x,y)+'</g>'}
+  return s+'<path d="M38 148Q150 180 262 148Q262 262 150 264Q38 262 38 148Z" fill="#f3f1ec" stroke="#cfcbc2" stroke-width="3"/><path d="M64 196Q150 222 236 196" stroke="#fff" stroke-width="5" fill="none" opacity=".8"/>'}
+ function iceSvg(c){var s='<ellipse cx="150" cy="266" rx="70" ry="9" fill="#000" opacity=".25"/><rect x="134" y="246" width="32" height="16" fill="#d6e3e8"/><path d="M62 170Q150 182 238 170Q232 246 150 252Q68 246 62 170Z" fill="#eaf3f6" stroke="#c4d6dc" stroke-width="3"/>';
+  (c.length===1?[[150,128,48]]:c.length===2?[[110,148,42],[190,148,42]]:[[104,150,40],[196,150,40],[150,112,44]]).forEach(function(e,i){s+='<g class="ly" style="--i:'+i+'"><ellipse cx="'+e[0]+'" cy="'+(e[1]+e[2]*.8)+'" rx="'+e[2]+'" ry="10" fill="'+c[i]+'"/><circle cx="'+e[0]+'" cy="'+e[1]+'" r="'+e[2]+'" fill="'+c[i]+'"/><ellipse cx="'+(e[0]-12)+'" cy="'+(e[1]-14)+'" rx="12" ry="7" fill="#fff" opacity=".35"/></g>'});
+  return s+'<g class="ly" style="--i:3"><path d="M108 100q42 30 84 0" stroke="#4a2a1a" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="150" cy="66" r="11" fill="#b3121f"/></g>'}
+
+ var SM={"Carne":"carne","Queso":"queso","Jamón":"jamon","Pollo":"pollo","Tomate":"tomate","Lechuga":"lechuga","Cebolla":"cebolla"};
+ var SA={"Tomate":"tomate","Pepino":"pepino","Aceitunas":"aceituna","Queso":"queso","Crutones":"crutones","Zanahoria":"zanahoria","Maíz":"maiz"};
+ var uid=0;
+ var CATS=[
+  {id:"pizzas",t:"Pizzas",s:"Cortes 3, 4, 6, 8",base:8,book:"Pizzas Artesanales",
+   g1:["1. Cortes de la pizza:",[["3 cortes",0,3],["4 cortes",.5,4],["6 cortes",1,6],["8 cortes",1.5,8]]],
+   g2:["2. Ingredientes (+$1.00 c/u, caen encima):",["Queso extra","Pepperoni","Champiñones","Aceitunas","Jamón"]],
+   g3:["3. Salsa base:",[["Tomate",0,"#d9402b"],["Barbacoa",.5,"#7a3b1e"],["Pesto",.5,"#6fa84a"]]],
+   ex:["Pizza personalizada con cortes","El cliente elige en cuántos cortes quiere su pizza (3, 4, 6 u 8), la salsa y los ingredientes. Cada ingrediente cae sobre la pizza y el precio se actualiza solo."]},
+  {id:"sandwiches",t:"Sándwiches",s:"Burgers & Club",base:4,book:"Sándwiches & Burgers",
+   g1:["1. Cortes:",[["Entero",0],["2 cortes",.5],["4 cortes",1]]],
+   g2:["2. Ingredientes (+$1.00 c/u, se apilan):",["Carne","Queso","Jamón","Pollo","Tomate","Lechuga","Cebolla"]],
+   g3:["3. Salsa:",[["Mayonesa",0],["BBQ",.5],["Picante",.5]]],
+   ex:["Sándwiches que se arman por capas","Cada ingrediente que eliges se apila entre los panes y el precio sube con cada capa. Así el cliente ve cómo queda antes de pedir."]},
+  {id:"ensaladas",t:"Ensaladas",s:"Bowls frescos",base:4,book:"Ensaladas & Bowls",
+   g1:["1. Tamaño del bowl:",[["Individual",0],["Mediana",2],["Familiar",4]]],
+   g2:["2. Ingredientes (+$1.00 c/u, caen al bowl):",["Tomate","Pepino","Aceitunas","Queso","Crutones","Zanahoria","Maíz"]],
+   g3:["3. Aderezo:",[["Ranch",0],["Vinagreta",0],["César",.5]]],
+   ex:["Bowls con ingredientes que caen","El cliente llena su bowl ingrediente por ingrediente. Se ve cómo se va llenando y el total cambia en cada clic."]},
+  {id:"pasteleria",t:"Pastelería",s:"Tortas & Fudge",base:8,book:"Pastelería & Tortas Artesanales",
+   g1:["1. Porciones / cortes del pastel:",[["3 porciones",0,3],["4 porciones",2,4],["6 porciones",4,6]]],
+   g2:["2. Decoraciones (+$1.00 c/u, caen encima):",["Fresas","Cerezas","Chispas","Velas"]],
+   g3:["3. Bizcocho y cobertura:",[["Vainilla",0,"#f3d9a4","#fff8ee"],["Chocolate",0,"#6b3f26","#8a5a3c"],["Fresa",0,"#f4a7b9","#f7b6cf"]]],
+   ex:["Pastelería personalizada con coberturas","El cliente escoge si quiere el pastel dividido en 3, 4 o 6 porciones, el sabor del bizcocho y las decoraciones que caen encima. Las líneas blancas muestran los cortes."]},
+  {id:"helados",t:"Helados",s:"Copas & Toppings",base:2,book:"Helados & Copas",
+   g1:["1. Tamaño:",[["1 bola",0,1],["2 bolas",1.5,2],["3 bolas",3,3]]],
+   g2:["2. Toppings (+$1.00 c/u):",["Salsa de chocolate","Cereza","Galleta","Chispas"]],
+   g3:["3. Sabor:",[["Chocolate",0,"#7a4a2b"],["Fresa",0,"#f7b6cf"],["Vainilla",0,"#fff3d6"],["Mixto",.5,"mix"]]],
+   ex:["Copas con bolas y toppings","El cliente decide cuántas bolas quiere y el sabor. Las bolas caen en la copa una por una."]}];
+
+ var PLATOS=[
+  ["pizzas","Pepperoni Delight","Más pedida","Masa artesanal a la piedra, doble mozzarella y pepperoni crocante.",3,["Pepperoni","Queso extra"],0],
+  ["pizzas","Truffle & Mushroom Pizza","Especial","Champiñones salteados, queso crema y toque de trufa.",3,["Champiñones","Queso extra"],0],
+  ["pizzas","Pizza BBQ","BBQ Lovers","Base de salsa barbacoa con pepperoni y jamón.",2,["Pepperoni","Jamón"],1],
+  ["pizzas","Margarita","Clásica","Tomate, mucha mozzarella y aceitunas.",1,["Queso extra","Aceitunas"],0],
+  ["pizzas","Vegetariana","Saludable","Champiñones y aceitunas sobre queso fundido.",2,["Champiñones","Aceitunas"],0],
+  ["sandwiches","Classic Cheeseburger","Gourmet","Carne a la parrilla, queso cheddar derretido, tomate y lechuga crocante.",0,["Carne","Queso","Tomate","Lechuga"],0],
+  ["sandwiches","Club Sándwich 4 Cortes","Para compartir","Triple piso tostado con jamón, queso, tomate y lechuga.",2,["Jamón","Queso","Tomate","Lechuga"],0],
+  ["sandwiches","Pollo Crujiente","Nuevo","Pollo empanizado con lechuga y tomate.",0,["Pollo","Lechuga","Tomate"],1],
+  ["sandwiches","Tostado Jamón y Queso","Clásico","El de siempre, calentito.",1,["Jamón","Queso"],0],
+  ["ensaladas","Bowl Mediterráneo","Saludable","Tomate, pepino, aceitunas y queso fresco.",1,["Tomate","Pepino","Aceitunas","Queso"],1],
+  ["ensaladas","Ensalada César","Clásica","Lechuga fresca con crutones y queso.",0,["Crutones","Queso"],2],
+  ["ensaladas","Ensalada Mixta","Liviana","Verduras de colores para una comida ligera.",0,["Tomate","Zanahoria","Maíz"],0],
+  ["pasteleria","Chocolate Lava & Berries","Pastelería","Bizcocho húmedo de cacao con fresas y cerezas.",1,["Fresas","Cerezas"],1],
+  ["pasteleria","Pastel de Fresa","Para celebrar","Bizcocho rosado con crema, fresas y chispas.",2,["Fresas","Chispas"],2],
+  ["pasteleria","Vainilla Celebración","Cumpleaños","Pastel clásico con velas y chispas de colores.",1,["Velas","Chispas"],0],
+  ["pasteleria","Tres Leches","Favorito","Bizcocho suave con crema y cerezas.",0,["Cerezas"],0],
+  ["helados","Copa Sundae Chocolate","Postre frío","Helado cremoso con salsa de chocolate y cereza.",2,["Salsa de chocolate","Cereza"],0],
+  ["helados","Helado de Fresa","Fresco","Dos bolas de fresa natural con galleta.",1,["Galleta"],1],
+  ["helados","Copa Mixta","Para compartir","Chocolate, fresa y vainilla en una sola copa.",2,["Chispas","Cereza"],3]];
+
+ function slug(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+ function ci_(id){for(var i=0;i<CATS.length;i++)if(CATS[i].id===id)return i}
+ function draw(c,st){
+  var g1=c.g1[1][st.g1],g3=c.g3[1][st.g3];
+  if(c.id==="pizzas")return pizzaSvg(g3[2],st.g2,"p"+(uid++),g1[2])+steam([110,150,190],90);
+  if(c.id==="sandwiches")return stackSvg(["pan2"].concat(st.g2.map(function(n){return SM[n]}),["pan2"]));
+  if(c.id==="ensaladas"){var t=st.g2.map(function(n){return SA[n]});return saladSvg(t.length?t:["hoja"])}
+  if(c.id==="pasteleria"){var n=g1[2],s='<g class="rise">'+cakeSvg(2,g3[2],"#fff3d6",g3[3],st.g2)+'</g>';
+   for(var i=1;i<n;i++){var x=50+i*200/n;s+='<line x1="'+x+'" y1="'+((x>77&&x<223)?152:208)+'" x2="'+x+'" y2="262" stroke="#fff" stroke-width="2.5" stroke-dasharray="6 5" opacity=".85"/>'}return s}
+  var col=g3[2]==="mix"?["#7a4a2b","#f7b6cf","#fff3d6"]:[g3[2],g3[2],g3[2]];return iceSvg(col.slice(0,g1[2]));
+ }
+ function price(c,st){return c.base+c.g1[1][st.g1][1]+st.g2.length+c.g3[1][st.g3][1]}
+ var ci=0,di=0,st={g1:0,g2:[],g3:0},cart={n:0,t:0},$=function(i){return document.getElementById(i)};
+
+ function opts(){
+  var c=CATS[ci],h="";
+  h+='<div class="og"><b>'+c.g1[0]+'</b>'+c.g1[1].map(function(o,i){return '<button type="button" class="opt'+(st.g1===i?' on':'')+'" data-g="1" data-i="'+i+'">'+o[0]+(o[1]?' (+$'+o[1].toFixed(2)+')':'')+'</button>'}).join("")+'</div>';
+  h+='<div class="og"><b>'+c.g2[0]+'</b>'+c.g2[1].map(function(o){return '<button type="button" class="opt'+(st.g2.indexOf(o)>-1?' on':'')+'" data-g="2" data-n="'+o+'">'+(st.g2.indexOf(o)>-1?'✓ ':'+ ')+o+'</button>'}).join("")+'</div>';
+  h+='<div class="og"><b>'+c.g3[0]+'</b>'+c.g3[1].map(function(o,i){return '<button type="button" class="opt'+(st.g3===i?' on':'')+'" data-g="3" data-i="'+i+'">'+o[0]+(o[1]?' (+$'+o[1].toFixed(2)+')':'')+'</button>'}).join("")+'</div>';
+  $("opts").innerHTML=h;
+ }
+
+ function art(){
+  var c=CATS[ci];
+  $("bookArt").innerHTML=draw(c,st);
+  var bp=$("bookp");bp.classList.add("anim");
+  $("total").textContent="$"+price(c,st).toFixed(2);
+  $("sum").textContent=c.g1[1][st.g1][0]+" · "+c.g3[1][st.g3][0]+(st.g2.length?" · "+st.g2.join(", "):"");
+  $("cap").textContent=PLATOS[di][1]+" — $"+price(c,st).toFixed(2);
+ }
+
+ function full(flip){
+  var c=CATS[ci];
+  $("bookT").textContent=c.book;
+  $("exT").textContent=c.ex[0];
+  $("exP").textContent=c.ex[1];
+  $("dishP").textContent=PLATOS[di][1]+": "+PLATOS[di][3];
+  [].forEach.call($("cattabs").children,function(b,i){b.classList.toggle("on",i===ci)});
+  opts();
+  var bp=$("bookp");
+  if(flip){bp.classList.remove("flip");void bp.offsetWidth;bp.classList.add("flip")}
+  art();
+ }
+
+ function loadDish(i){
+  di=i;var p=PLATOS[i];ci=ci_(p[0]);
+  st={g1:p[4],g2:p[5].slice(),g3:p[6]};
+  full(true);
+ }
+
+ function firstOf(id){for(var i=0;i<PLATOS.length;i++)if(PLATOS[i][0]===id)return i}
+
+ function grid(f){
+  [].forEach.call($("filt").children,function(b){b.classList.toggle("on",b.dataset.f===f)});
+  var h="";
+  PLATOS.forEach(function(p,i){
+   if(f!=="all"&&p[0]!==f)return;
+   var c=CATS[ci_(p[0])],s={g1:p[4],g2:p[5],g3:p[6]};
+   h+='<div class="col-6 col-lg-3"><div class="mcard"><div class="media"><svg viewBox="0 0 300 300" aria-hidden="true">'+draw(c,s)+'</svg><img src="img/'+slug(p[1])+'.jpg" alt="'+p[1]+'" loading="lazy" onerror="this.remove()"><span class="br">'+p[2]+'</span></div><div class="mb"><h3 class="h6 m-0">'+p[1]+'</h3><p>'+p[3]+'</p><div class="pr"><b>$'+price(c,s).toFixed(2)+'</b><small class="opacity-50">Personalizable</small></div><button type="button" class="mbtn" data-i="'+i+'">Personalizar este plato</button></div></div></div>';
+  });
+  $("grid").innerHTML=h;
+ }
+
+ CATS.forEach(function(c){$("cattabs").insertAdjacentHTML("beforeend",'<button type="button" class="cattab"><b>'+c.t+'</b><small>'+c.s+'</small></button>')});
+ $("filt").insertAdjacentHTML("beforeend",'<button type="button" data-f="all">Todos</button>'+CATS.map(function(c){return '<button type="button" data-f="'+c.id+'">'+c.t+'</button>'}).join(""));
+ $("cattabs").addEventListener("click",function(e){var b=e.target.closest(".cattab");if(!b)return;var i=[].indexOf.call($("cattabs").children,b);loadDish(firstOf(CATS[i].id));grid(CATS[i].id)});
+ $("filt").addEventListener("click",function(e){var b=e.target.closest("button");if(b)grid(b.dataset.f)});
+ $("grid").addEventListener("click",function(e){var b=e.target.closest(".mbtn");if(!b)return;loadDish(+b.dataset.i);$("constructor").scrollIntoView({behavior:"smooth"})});
+ $("opts").addEventListener("click",function(e){
+  var b=e.target.closest(".opt");if(!b)return;
+  var c=CATS[ci],g=b.dataset.g;
+  if(g==="1")st.g1=+b.dataset.i;
+  else if(g==="3")st.g3=+b.dataset.i;
+  else{var n=b.dataset.n,a=st.g2.indexOf(n)>-1?st.g2.filter(function(x){return x!==n}):st.g2.concat(n);st.g2=c.g2[1].filter(function(x){return a.indexOf(x)>-1})}
+  opts();art();
+ });
+ $("addBtn").onclick=function(){
+  cart.n++;cart.t+=price(CATS[ci],st);
+  $("cart").textContent="🛒 "+cart.n+" · $"+cart.t.toFixed(2);
+  var b=$("addBtn");b.textContent="¡Agregado! ✓";
+  setTimeout(function(){b.textContent="Agregar al pedido"},900);
+ };
+ $("editBtn").onclick=function(){
+  var on=document.body.classList.toggle("edit");
+  [].forEach.call(document.querySelectorAll("[data-edit]"),function(el){el.contentEditable=on});
+  this.textContent=on?"✅ Terminar edición":"✏️ Modo editar";
+ };
+ $("heroArt").innerHTML=pizzaSvg("#d9402b",["Pepperoni","Aceitunas","Champiñones"],"hero",8)+steam([110,150,190],90);
+ loadDish(firstOf("pizzas"));
+ grid("all");
+})();
+</script>
+</body>
+</html>
