@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Texto progresivo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/cara.css">
+<style>
+  body {
+  background: #000;
+  display: flex;
+  flex-direction: column;   /* apila: video arriba, caja abajo */
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Agrupa la caja y los botones para mantener el gap de 200px con el video */
+.grupo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 600px;
+  max-width: 90vw;
+}
+
+.contenedor {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 25px;
+  background: #000;
+  color: #fff;
+  border: 4px solid #fff;
+  animation: glitch-caja 1.5s steps(1) infinite;
+}
+
+.video-arriba {
+  width: 600px;             /* mismo ancho que la caja */
+  max-width: 45vw;
+  max-height: 45vh;         /* evita que empuje la caja fuera de pantalla */
+  object-fit: cover;
+  width: 200px;
+}
+
+/* ---------- BOTONES (mismo estilo que la caja) ---------- */
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+}
+
+.boton {
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px 22px;
+  background: #000;
+  border: 4px solid #fff;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  animation: glitch-caja 1.5s steps(1) infinite;
+  
+   font-family: 'Times New Roman', Times, serif;
+  font-weight: 900;
+  color: #f4f4f4; /* Blanco ligeramente roto (más realista que #fff puro) */
+  font-size: 2rem;
+  letter-spacing: 1px;
+
+  /* Ensancha la fuente horizontalmente */
+  display: inline-block;
+  transform: scaleX(1.25);
+  transform-origin: left;
+
+  /* Efecto de tinta desgastada / bordes carcomidos */
+  filter: contrast(220%) blur(0.45px);
+  text-shadow: 
+    1px 1px 0px rgba(255, 255, 255, 0.35),
+    -1px -0.5px 1px rgba(255, 255, 255, 0.25),
+    2px 0px 2px rgba(0, 0, 0, 0.9); /* "Muerde" la letra desde adentro */
+}
+
+/* desfasa la animación de cada botón para que no glitcheen todos a la vez */
+.boton:nth-child(2) { animation-delay: -0.5s; }
+.boton:nth-child(3) { animation-delay: -1s; }
+.boton:nth-child(4) { animation-delay: -0.25s; }
+.boton:nth-child(5) { animation-delay: -0.75s; }
+
+.boton:hover {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+  outline: 4px solid #fff;
+}
+
+.boton:active { transform: translate(2px, 2px); }
+
+.contenedor::before,
+.contenedor::after,
+.boton::before,
+.boton::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 4px solid #fff;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.contenedor::before, .boton::before { animation: glitch-a 1.5s steps(1) infinite; }
+.contenedor::after,  .boton::after  { animation: glitch-b 1.5s steps(1) infinite; }
+
+.boton:nth-child(2)::before, .boton:nth-child(2)::after { animation-delay: -0.5s; }
+.boton:nth-child(3)::before, .boton:nth-child(3)::after { animation-delay: -1s; }
+.boton:nth-child(4)::before, .boton:nth-child(4)::after { animation-delay: -0.25s; }
+.boton:nth-child(5)::before, .boton:nth-child(5)::after { animation-delay: -0.75s; }
+
+  #text {
+    font-family: 'Times New Roman', Times, serif;
+  font-weight: 900;
+  color: #f4f4f4; /* Blanco ligeramente roto (más realista que #fff puro) */
+  font-size: 2rem;
+  letter-spacing: 1px;
+
+  /* Ensancha la fuente horizontalmente */
+  display: inline-block;
+  transform: scaleX(1.25);
+  transform-origin: left;
+
+  /* Efecto de tinta desgastada / bordes carcomidos */
+  filter: contrast(220%) blur(0.45px);
+  text-shadow: 
+    1px 1px 0px rgba(255, 255, 255, 0.35),
+    -1px -0.5px 1px rgba(255, 255, 255, 0.25),
+    2px 0px 2px rgba(0, 0, 0, 0.9); /* "Muerde" la letra desde adentro */
+  }
+
+  #text::after {
+    content: "|";
+    animation: parpadeo 0.8s infinite;
+  }
+
+  @keyframes glitch-caja {
+    0%, 100% {
+      background: #000; color: #fff; border-color: #fff;
+      clip-path: inset(0);
+      filter: none;
+    }
+    10% { clip-path: inset(10% 0 55% 0); }
+    14% { clip-path: inset(0); }
+    30% {
+      background: #fff; color: #000; border-color: #000;
+      filter: contrast(2);
+    }
+    34% {
+      background: #000; color: #fff; border-color: #fff;
+      filter: none;
+    }
+    55% { clip-path: inset(60% 0 5% 0); }
+    58% { clip-path: inset(0); }
+    75% {
+      background: #fff; color: #000; border-color: #000;
+      clip-path: inset(30% 0 30% 0);
+    }
+    80% {
+      background: #000; color: #fff; border-color: #fff;
+      clip-path: inset(0);
+    }
+  }
+
+  @keyframes glitch-a {
+    0%, 100% { opacity: 0; transform: translate(0); }
+    12% { opacity: 1; transform: translate(-8px, 3px); }
+    16% { opacity: 0; }
+    60% { opacity: 1; transform: translate(6px, -4px); }
+    64% { opacity: 0; }
+  }
+
+  @keyframes glitch-b {
+    0%, 100% { opacity: 0; transform: translate(0); }
+    32% { opacity: 1; transform: translate(8px, 5px); }
+    36% { opacity: 0; }
+    78% { opacity: 1; transform: translate(-6px, -3px); }
+    82% { opacity: 0; }
+  }
+
+  @keyframes parpadeo {
+    50% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="video-arriba pixel-video"><div class="pixel-cara"></div></div>
+
+<div class="grupo">
+  <div class="contenedor">
+    <p id="text"></p>
+  </div>
+
+  <!-- Edita data-texto con el mensaje que quieras y el texto del botón con el nombre -->
+  <div class="botones">
+    <button class="boton" id="siguiente">SIGUIENTE</button>
+  </div>
+</div>
+
+<script>
+  const msg = "Hola"; //Editar mensaje inicial
+  const vel = 50; // velocidad de aparicion
+  const p = document.getElementById("text");
+  let i = 0;
+  let actual = msg;
+  let timer = null;
+
+  function escribir() {
+    if (i < actual.length) {
+      p.textContent += actual.charAt(i);
+      i++;
+      timer = setTimeout(escribir, vel);
+    }
+  }
+
+  function cambiarTexto(nuevo) {
+    clearTimeout(timer);   // corta la escritura anterior
+    p.textContent = "";
+    actual = nuevo;
+    i = 0;
+    escribir();
+  }
+
+document.querySelectorAll(".boton[data-texto]").forEach(btn => {
+  btn.addEventListener("click", () => cambiarTexto(btn.dataset.texto));
+});
+const textos = [
+  "Hola",      // primero 
+  "Esto es una prueba del arg",
+  "Un arg es un juego de realidad alternativa",
+  "Que puede o no basarse en una franquicia existente",
+  ".",
+  "..",
+  "...",
+  "Bueno eso es todo",
+  "No hay mas comentarios",
+  "De verdad no hay mas",
+  "De verdad",
+  "De verdad xd"     // ultimo
+];
+let indice = 0;
+
+const btnSiguiente = document.getElementById("siguiente");
+btnSiguiente.addEventListener("click", () => {
+  if (indice < textos.length - 1) {
+    indice++;
+    cambiarTexto(textos[indice]);
+  }
+  if (indice === textos.length - 1) {
+    btnSiguiente.disabled = true;
+  }
+});
+  escribir();
+</script>
+</body>
+</html>
