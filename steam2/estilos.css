@@ -1,0 +1,125 @@
+/* Configuración general del fondo y texto de la página */
+body {
+  background-color: #0d0d0d;
+  color: #e5e5e5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Colores personalizados y branding de GameStore */
+.bg-oscuro { background-color: #050505; }
+.bg-panel { background-color: #161616; border: 1px solid #242424; }
+.text-naranja { color: #ff6b00 !important; }
+
+/* Botón principal de color naranja */
+.btn-naranja {
+  background-color: #ff6b00;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+.btn-naranja:hover {
+  background-color: #cc5500;
+  color: #fff;
+}
+
+/* Botones de la barra de navegación superior */
+.nav-btn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #8c8c8c;
+  padding: 10px 14px;
+  font-weight: 500;
+  text-align: left;
+}
+.nav-btn:hover { color: #fff; }
+.nav-btn.activo {
+  color: #fff;
+  border-bottom-color: #ff6b00;
+}
+
+/* Enlaces de iniciar sesión y registrarse en el encabezado */
+.acceso-steam {
+  font-size: 0.8rem;
+  color: #8c8c8c;
+}
+.acceso-steam a {
+  color: #b8b8b8;
+  text-decoration: none;
+  cursor: pointer;
+}
+.acceso-steam a:hover {
+  color: #ff6b00;
+}
+
+/* Control para mostrar u ocultar las secciones de la página */
+.seccion { display: none; }
+.seccion.activa { display: block; }
+
+/* Línea decorativa naranja a la izquierda de los títulos */
+.titulo-seccion {
+  border-left: 4px solid #ff6b00;
+  padding-left: 10px;
+  color: #fff;
+}
+
+/* Tamaño y estilo para las imágenes del carrusel */
+.carrusel-item-box {
+  height: 360px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Tarjetas individuales de los juegos en la tienda */
+.tarjeta-juego {
+  background-color: #161616;
+  border: 1px solid #242424;
+  transition: transform 0.2s, border-color 0.2s;
+  position: relative;
+  cursor: pointer;
+}
+.tarjeta-juego:hover {
+  transform: translateY(-4px);
+  border-color: #ff6b00;
+}
+.tarjeta-juego img {
+  height: 130px;
+  object-fit: cover;
+}
+
+/* Insignias de descuento y etiquetas de precios */
+.badge-descuento-esq {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  font-weight: 700;
+}
+.precio-orig-izq {
+  color: #8c8c8c;
+  text-decoration: line-through;
+  font-size: 0.78rem;
+  margin-right: 6px;
+}
+.precio-final-der {
+  color: #ff6b00;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Diseño y colores del pie de página */
+footer {
+  background-color: #050505;
+  border-top: 2px solid #ff6b00;
+}
+footer a:hover {
+  color: #ff6b00 !important;
+}

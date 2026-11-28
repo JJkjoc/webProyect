@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GameStore</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Archivo CSS externo -->
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO RESPONSIVO -->
+  <header class="navbar navbar-expand-md navbar-dark bg-oscuro border-bottom border-dark sticky-top py-1">
+    <div class="container">
+      
+      <!-- Logo a la izquierda -->
+      <a href="#" class="navbar-brand fs-4 fw-bold text-white m-0" onclick="cambiarSeccion('tienda'); return false;">
+        <i class="bi bi-controller text-naranja"></i> Game<span class="text-naranja">Store</span>
+      </a>
+
+      <!-- Derecha (siempre a la derecha, junto al menú hamburguesa en móvil) -->
+      <div class="d-flex align-items-center gap-2 ms-auto order-md-3">
+        <div class="acceso-steam d-flex align-items-center gap-1 text-nowrap small">
+          <a href="registro.html">iniciar sesión</a>
+          <span>|</span>
+          <a href="registro.html">registrarse</a>
+        </div>
+
+        <button class="navbar-toggler border-secondary px-2 py-1" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon" style="width: 1.2em; height: 1.2em;"></span>
+        </button>
+      </div>
+
+      <!-- Menú de navegación principal -->
+      <div class="collapse navbar-collapse order-md-2" id="menuNavegacion">
+        <nav class="navbar-nav flex-column flex-md-row pt-2 pt-md-0 ms-md-4">
+          <button class="nav-btn activo" data-seccion="tienda">TIENDA</button>
+          <button class="nav-btn" data-seccion="comunidad">COMUNIDAD</button>
+          <button class="nav-btn" data-seccion="biblioteca">
+            BIBLIOTECA
+          </button>
+        </nav>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="container my-4">
+
+    <!-- SECCIÓN TIENDA -->
+    <section id="tienda" class="seccion activa">
+      
+      <!-- Carrusel de Bootstrap -->
+      <div id="carruselDestacado" class="carousel slide mb-4 border border-secondary" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carruselDestacado" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#carruselDestacado" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#carruselDestacado" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="carrusel-item-box p-4 p-md-5" style="background-image: linear-gradient(to top, #0d0d0d 10%, transparent), url('https://wallpapercave.com/wp/wp14567184.jpg');">
+              <div>
+                <span class="badge bg-warning text-dark mb-2">OFERTA DESTACADA • -50%</span>
+                <h2 class="text-white fw-bold">Death Stranding 2</h2>
+                <p class="text-light col-md-8">Embárcate en una nueva travesía más allá de la UCA con descuento especial por tiempo limitado.</p>
+                <a href="#catalogo" class="btn btn-naranja">Ver en la tienda</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="carrusel-item-box p-4 p-md-5" style="background-image: linear-gradient(to top, #0d0d0d 10%, transparent), url('https://wallpapercave.com/wp/wp3973740.jpg');">
+              <div>
+                <span class="badge bg-warning text-dark mb-2">OFERTA DESTACADA • -25%</span>
+                <h2 class="text-white fw-bold">Metro Exodus</h2>
+                <p class="text-light col-md-8">Explora las tierras devastadas de Rusia en una aventura postapocalíptica inmersiva.</p>
+                <a href="#catalogo" class="btn btn-naranja">Ver en la tienda</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="carrusel-item-box p-4 p-md-5" style="background-image: linear-gradient(to top, #0d0d0d 10%, transparent), url('https://wallpapercave.com/wp/wp11647626.jpg');">
+              <div>
+                <span class="badge bg-warning text-dark mb-2">RECOMENDADO • $ 9.99</span>
+                <h2 class="text-white fw-bold">Signalis</h2>
+                <p class="text-light col-md-8">Un clásico moderno de survival horror con estética retro y una historia inolvidable.</p>
+                <a href="#catalogo" class="btn btn-naranja">Ver en la tienda</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carruselDestacado" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carruselDestacado" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+
+      <!-- Catálogo -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 id="catalogo" class="titulo-seccion m-0">Novedades y populares</h4>
+        <small class="text-secondary">Haz clic en un juego para añadirlo a tu biblioteca</small>
+      </div>
+      
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3" id="fila-catalogo">
+        
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="Death Stranding 2" data-img="https://wallpapercave.com/wp/wp14567184.jpg">
+            <span class="badge bg-warning text-dark badge-descuento-esq">-50%</span>
+            <img src="https://wallpapercave.com/wp/wp14567184.jpg" class="card-img-top" alt="Death Stranding 2">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">Death Stranding 2</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <div>
+                  <span class="precio-orig-izq">$59.99</span>
+                  <span class="precio-final-der">$29.99</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="Signalis" data-img="https://wallpapercave.com/wp/wp11647626.jpg">
+            <span class="badge bg-warning text-dark badge-descuento-esq">-20%</span>
+            <img src="https://wallpapercave.com/wp/wp11647626.jpg" class="card-img-top" alt="Signalis">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">Signalis</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <div>
+                  <span class="precio-orig-izq">$9.99</span>
+                  <span class="precio-final-der">$7.99</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="Metro Exodus" data-img="https://wallpapercave.com/wp/wp3973740.jpg">
+            <span class="badge bg-warning text-dark badge-descuento-esq">-25%</span>
+            <img src="https://wallpapercave.com/wp/wp3973740.jpg" class="card-img-top" alt="Metro Exodus">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">Metro Exodus</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <div>
+                  <span class="precio-orig-izq">$29.99</span>
+                  <span class="precio-final-der">$22.49</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="Dead Cells" data-img="https://wallpapercave.com/wp/wp3589145.jpg">
+            <img src="https://wallpapercave.com/wp/wp3589145.jpg" class="card-img-top" alt="Dead Cells">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">Dead Cells</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <span class="precio-final-der">$24.99</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="Halo CE" data-img="https://wallpapercave.com/uwp/uwp5090488.png">
+            <span class="badge bg-warning text-dark badge-descuento-esq">-15%</span>
+            <img src="https://wallpapercave.com/uwp/uwp5090488.png" class="card-img-top" alt="Halo CE">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">Halo CE</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <div>
+                  <span class="precio-orig-izq">$9.99</span>
+                  <span class="precio-final-der">$8.49</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="GTA V" data-img="https://placehold.co/400x200/161616/ff6b00?text=GTA+V">
+            <img src="" class="card-img-top" alt="GTA V">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">GTA V</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <span class="precio-final-der">$29.99</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="Left 4 Dead 2" data-img="https://placehold.co/400x200/161616/ff6b00?text=Left+4+Dead+2">
+            <span class="badge bg-warning text-dark badge-descuento-esq">-50%</span>
+            <img src="" class="card-img-top" alt="Left 4 Dead 2">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">Left 4 Dead 2</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <div>
+                  <span class="precio-orig-izq">$9.99</span>
+                  <span class="precio-final-der">$4.99</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="Minecraft" data-img="https://placehold.co/400x200/161616/ff6b00?text=Minecraft">
+            <img src="" class="card-img-top" alt="Minecraft">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">Minecraft</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <span class="precio-final-der">$26.95</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="Mortal Kombat 11" data-img="https://placehold.co/400x200/161616/ff6b00?text=Mortal+Kombat+11">
+            <span class="badge bg-warning text-dark badge-descuento-esq">-35%</span>
+            <img src="" class="card-img-top" alt="Mortal Kombat 11">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">Mortal Kombat 11</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <div>
+                  <span class="precio-orig-izq">$49.99</span>
+                  <span class="precio-final-der">$32.49</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card tarjeta-juego text-white h-100" data-titulo="EA Sports FC" data-img="https://placehold.co/400x200/161616/ff6b00?text=EA+Sports+FC">
+            <img src="" class="card-img-top" alt="EA Sports FC">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <span class="small mb-2">EA Sports FC</span>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <button class="btn btn-naranja btn-sm py-0 px-2 btn-comprar">Añadir</button>
+                <span class="precio-final-der">$69.99</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN COMUNIDAD -->
+    <section id="comunidad" class="seccion">
+      <h4 class="titulo-seccion mb-2">Actividad de la comunidad</h4>
+      <p class="text-secondary small mb-3">Contenido oficial y de la comunidad de todos los juegos y programas de GameStore.</p>
+
+      <div class="bg-panel p-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="text-white fw-semibold">¡Te damos la bienvenida a la Comunidad de GameStore!</div>
+          <small class="text-secondary">Inicia sesión para encontrar más puntos de encuentro a los que explorar, comentar o valorar contenido.</small>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <a href="registro.html" class="btn btn-naranja btn-sm px-3 text-decoration-none">Iniciar sesión</a>
+          <span class="text-secondary small">o</span>
+          <a href="registro.html" class="btn btn-outline-secondary btn-sm text-white">Registrarse</a>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="bg-panel p-3 h-100">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="badge bg-dark border border-secondary text-naranja">CAPTURA DESTACADA</span>
+              <small class="text-secondary"><i class="bi bi-hand-thumbs-up"></i> 428</small>
+            </div>
+            <img src="https://wallpapercave.com/wp/wp3973740.jpg" class="img-fluid mb-2 border border-dark" alt="Metro Exodus">
+            <h6 class="text-white mb-1">Metro Exodus</h6>
+            <p class="small text-secondary mb-0">"Explorando el Volga al amanecer sin HUD."</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="bg-panel p-3 h-100">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="badge bg-dark border border-secondary text-naranja">GUÍA DE LA COMUNIDAD</span>
+              <small class="text-secondary"><i class="bi bi-hand-thumbs-up"></i> 315</small>
+            </div>
+            <img src="https://wallpapercave.com/wp/wp3589145.jpg" class="img-fluid mb-2 border border-dark" alt="Dead Cells">
+            <h6 class="text-white mb-1">Dead Cells — Guía completa de mutaciones</h6>
+            <p class="small text-secondary mb-0">Todo lo que necesitas saber para superar las 5 células de jefe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- Formulario colapsable para publicar -->
+      <div class="collapse mb-4" id="formNuevaPublicacion">
+        <form id="post-form" class="bg-panel p-3 border border-secondary">
+          <h6 class="text-white mb-3">Crear publicación</h6>
+          <div class="row g-2 mb-2">
+            <div class="col-md-6">
+              <input type="text" id="post-juego" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Nombre del juego (ej. Signalis)" required>
+            </div>
+            <div class="col-md-6">
+              <select id="post-tipo" class="form-select form-select-sm bg-dark text-white border-secondary">
+                <option value="CAPTURA DESTACADA">Captura destacada</option>
+                <option value="GUÍA DE LA COMUNIDAD">Guía de la comunidad</option>
+                <option value="RESEÑA">Reseña</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-2">
+            <input type="url" id="post-img" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="URL de imagen (opcional)">
+          </div>
+          <div class="mb-3">
+            <textarea id="post-texto" rows="2" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Escribe tu comentario o guía..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-naranja btn-sm px-3">Publicar</button>
+        </form>
+      </div>
+
+      <!-- Contenedor dinámico de publicaciones -->
+      <div class="row g-3" id="lista-comunidad"></div>
+    </section>
+
+    <!-- SECCIÓN BIBLIOTECA -->
+    <section id="biblioteca" class="seccion">
+      <div class="bg-panel p-4 p-md-5 text-center my-4 mx-auto" style="max-width: 620px;">
+        <i class="bi bi-collection-play display-4 text-naranja mb-3 d-block"></i>
+        <h3 class="text-white fw-bold mb-2">Tu biblioteca de GameStore</h3>
+        <p class="text-secondary mb-4">
+          Inicia sesión para ver tus juegos adquiridos, tus horas de juego registradas, logros y contenido descargable.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="registro.html" class="btn btn-naranja px-4 text-decoration-none">Iniciar sesión</a>
+          <a href="registro.html" class="btn btn-outline-secondary text-white px-4">Crear cuenta</a>
+        </div>
+      </div>
+    </section>
+
+      <!-- Contenedor dinámico de juegos de biblioteca -->
+      <div id="contenido-biblioteca"></div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="text-secondary py-4 mt-5">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <div>
+        <span class="fs-5 fw-bold text-white">
+          <i class="bi bi-controller text-naranja"></i> Game<span class="text-naranja">Store</span>
+        </span>
+        <div class="small mt-1">&copy; 2026 GameStore. Todos los derechos reservados.</div>
+      </div>
+
+      <div>
+        <div class="small text-white mb-1">Síguenos</div>
+        <div class="d-flex gap-3 fs-5">
+          <a href="#" class="text-secondary" aria-label="Discord"><i class="bi bi-discord"></i></a>
+          <a href="#" class="text-secondary" aria-label="Twitch"><i class="bi bi-twitch"></i></a>
+          <a href="#" class="text-secondary" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Archivo JavaScript externo -->
+  <script src="script.js"></script>
+  <script>
+    const botonesNav = document.querySelectorAll('.nav-btn');
+    const secciones = document.querySelectorAll('.seccion');
+    const menuColapsable = document.getElementById('menuNavegacion');
+
+    function cambiarSeccion(idSeccion) {
+      botonesNav.forEach(btn => {
+        btn.classList.toggle('activo', btn.dataset.seccion === idSeccion);
+      });
+      secciones.forEach(sec => {
+        sec.classList.toggle('activa', sec.id === idSeccion);
+      });
+
+      // Cierra el menú desplegable en celulares al elegir una sección
+      const bsCollapse = bootstrap.Collapse.getInstance(menuColapsable);
+      if (bsCollapse) {
+        bsCollapse.hide();
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    botonesNav.forEach(boton => {
+      boton.addEventListener('click', () => cambiarSeccion(boton.dataset.seccion));
+    });
+
+    document.getElementById('form-login').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById('usuario-login').value.trim();
+      if (usuario) {
+        alert('Bienvenido a GameStore, ' + usuario);
+        cambiarSeccion('tienda');
+      }
+    });
+  </script>
+</body>
+</html>
